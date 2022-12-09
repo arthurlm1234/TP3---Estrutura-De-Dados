@@ -15,6 +15,8 @@ int main(int argc, char* argv[]) {
     raiz = inserirVerbete(raiz,"bucetaaaaaaaaaaaaa", "a", "aaaa");
     raiz = inserirVerbete(raiz,"queijo", "a", "aaaa");
     raiz = inserirVerbete(raiz,"boraaaaaa", "a", "aaaa");
+    std::string *comSignificado = new std::string;
+    comSignificado = buscarPalavrasComSignificado(raiz,0);
     /*std::cout << raiz->palavra << std::endl;
     std::cout << raiz->filhoDireito-> palavra << std::endl;
     std::cout << raiz->filhoEsquerdo-> palavra << std::endl;*/

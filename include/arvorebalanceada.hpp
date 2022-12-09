@@ -91,6 +91,66 @@ Verbete *inserirVerbete(Verbete *verbete, std::string _palavra, std::string _cla
     return verbete;
 }
 
+std::string *buscarPalavrasComSignificado(Verbete *raiz, int nivel){
+    int i = 0;
+    std::string *comSignificado = new std::string;
+    
+    if(raiz != NULL){
+        buscarPalavrasComSignificado(raiz->filhoEsquerdo, nivel + 1);
+        if(!raiz->significados.empty()){
+            comSignificado[i] = raiz->palavra;
+            i++;
+        }
+        buscarPalavrasComSignificado(raiz->filhoDireito, nivel + 1);
+    }
+
+    return comSignificado;
+}
+
+Verbete *ultimaPalavra(Verbete *verbete){
+    Verbete *atual = verbete;
+    while(atual->filhoEsquerdo != NULL){
+        atual = atual->filhoEsquerdo;
+    }
+
+    return atual;
+}
+
+Verbete *deletarVerbete(Verbete *raiz, std::string _palavra){
+    if(raiz == NULL)
+        return raiz;
+    if(_palavra < raiz->palavra)
+        raiz->filhoEsquerdo = deletarVerbete(raiz->filhoEsquerdo, _palavra);
+    else if(_palavra > raiz->palavra)
+        raiz->filhoDireito = deletarVerbete(raiz->filhoDireito, _palavra);
+    else{
+        if ((raiz->filhoEsquerdo == NULL) || (raiz->filhoDireito == NULL)){
+            Verbete *temp = raiz->filhoEsquerdo ? raiz->filhoEsquerdo : raiz->filhoDireito;
+            if(temp == NULL){
+                temp = raiz;
+                raiz = NULL;
+            }
+            else{
+                *raiz = *temp;
+            }
+            free(temp);
+        }
+        else{
+            Verbete *temp = ultimaPalavra(raiz->filhoDireito);
+            raiz->palavra = temp->palavra;
+            raiz->filhoDireito = deletarVerbete(raiz->filhoDireito, temp->palavra);
+        }
+    }
+
+    if(raiz == NULL){
+        return raiz;
+    }
+
+    raiz->altura = 1 + max(altura(raiz->filhoEsquerdo),altura(raiz->filhoDireito));
+    int fatorBalanco = calcularFatorBalanco(raiz);
+    
+}
+
 //print palavras alfabeticamente
 void printArvore(Verbete *raiz, int nivel){
     if(raiz != NULL){
@@ -99,3 +159,7 @@ void printArvore(Verbete *raiz, int nivel){
         printArvore(raiz->filhoDireito, nivel + 1);
     }
 }
+
+
+
+
