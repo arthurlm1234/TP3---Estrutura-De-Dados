@@ -1,5 +1,13 @@
 #include "verbete.hpp"
 
+int cont = 0;
+std::string palavras[100];
+
+void adicionarPalavra(std::string palavra){
+    palavras[cont] = palavra;
+    cont++;
+}
+
 int altura(Verbete *v){
     if(v == NULL){
         return 0;
@@ -15,11 +23,10 @@ int max(int a, int b){
     return b;
 }
 
-Verbete *novoVerbete(std::string _palavra, std::string _classeMorfologica, std::string _signficados){
+Verbete *novoVerbete(std::string _palavra, std::string _signficados){
     Verbete *verbete = new Verbete();
     verbete->palavra = _palavra;
-    verbete->classeMorfologica = _classeMorfologica;
-    verbete->significados = _signficados;
+    verbete->significados.adicionarSignificado(_signficados);
     verbete->altura = 1;
     return(verbete);
 }
@@ -51,19 +58,23 @@ int calcularFatorBalanco(Verbete *n){
     return altura(n->filhoEsquerdo) - altura(n->filhoDireito);
 }
 
-Verbete *inserirVerbete(Verbete *verbete, std::string _palavra, std::string _classeMorfologica, std::string _signficados){
+Verbete *inserirVerbete(Verbete *verbete, std::string _palavra, std::string _signficados){
     if(verbete == NULL){
-        return (novoVerbete(_palavra, _classeMorfologica, _signficados));
+        return (novoVerbete(_palavra, _signficados));
     }
 
     if(_palavra < verbete->palavra)
-        verbete->filhoEsquerdo = inserirVerbete(verbete->filhoEsquerdo, _palavra, _classeMorfologica, _signficados);
+        verbete->filhoEsquerdo = inserirVerbete(verbete->filhoEsquerdo, _palavra, _signficados);
     
     else if(_palavra > verbete->palavra)
-        verbete->filhoDireito = inserirVerbete(verbete->filhoDireito, _palavra, _classeMorfologica, _signficados);
+        verbete->filhoDireito = inserirVerbete(verbete->filhoDireito, _palavra, _signficados);
     
-    else
+    else{
+        if (_signficados != "")
+            verbete->significados.adicionarSignificado(_signficados);
         return verbete;
+    }
+        
     
     verbete->altura = 1 + max(altura(verbete->filhoDireito), altura(verbete->filhoEsquerdo));
     
@@ -91,21 +102,20 @@ Verbete *inserirVerbete(Verbete *verbete, std::string _palavra, std::string _cla
     return verbete;
 }
 
-std::string *buscarPalavrasComSignificado(Verbete *raiz, int nivel){
-    int i = 0;
-    std::string *comSignificado = new std::string;
-    
-    if(raiz != NULL){
-        buscarPalavrasComSignificado(raiz->filhoEsquerdo, nivel + 1);
-        if(!raiz->significados.empty()){
-            comSignificado[i] = raiz->palavra;
-            i++;
-        }
-        buscarPalavrasComSignificado(raiz->filhoDireito, nivel + 1);
+//find word with significado and save in a array
+void buscarPalavrasComSignificado(Verbete *raiz, int nivel){
+    if(raiz == NULL){
+        return;
     }
-
-    return comSignificado;
+    //std::string *palavras = new std::string[10];
+    buscarPalavrasComSignificado(raiz->filhoEsquerdo, nivel);
+    if(!raiz->significados.conteudo->empty()){
+        adicionarPalavra(raiz->palavra);
+        //std::cout << raiz->palavra << std::endl;
+    }
+    buscarPalavrasComSignificado(raiz->filhoDireito, nivel);
 }
+
 
 Verbete *ultimaPalavra(Verbete *verbete){
     Verbete *atual = verbete;
@@ -148,15 +158,36 @@ Verbete *deletarVerbete(Verbete *raiz, std::string _palavra){
 
     raiz->altura = 1 + max(altura(raiz->filhoEsquerdo),altura(raiz->filhoDireito));
     int fatorBalanco = calcularFatorBalanco(raiz);
+
+    if(fatorBalanco < -1){
+        if(calcularFatorBalanco(raiz->filhoDireito) <= 0){
+            return rotacaoEsquerda(raiz);
+        }
+        else{
+            raiz->filhoDireito = rotacaoDireita(raiz->filhoDireito);
+            return rotacaoEsquerda(raiz);
+        }
+    }
     
+    return raiz;
 }
 
 //print palavras alfabeticamente
 void printArvore(Verbete *raiz, int nivel){
     if(raiz != NULL){
         printArvore(raiz->filhoEsquerdo, nivel + 1);
-        std::cout << raiz->palavra << std::endl;
+        std::cout << raiz->palavra << " " << std::endl;
+        raiz->significados.printSignificados();
         printArvore(raiz->filhoDireito, nivel + 1);
+    }
+}
+
+//Destroy tree
+void destruirArvore(Verbete *raiz){
+    if(raiz != NULL){
+        destruirArvore(raiz->filhoEsquerdo);
+        destruirArvore(raiz->filhoDireito);
+        delete raiz;
     }
 }
 
