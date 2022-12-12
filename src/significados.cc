@@ -2,7 +2,7 @@
 
 Significados::Significados(){
     numeroSignificados = 0;
-    conteudo = new std::string[10];
+    conteudo = new std::string[10000];
 }
 
 void Significados::adicionarSignificado(std::string significado){

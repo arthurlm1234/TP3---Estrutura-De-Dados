@@ -5,7 +5,7 @@ ListaEncadeada::ListaEncadeada(){
     ultimo = NULL;
 }
 
-void ListaEncadeada::insereFinal(Verbete verbete){
+void ListaEncadeada::insereOrdemAlfabetica(Verbete verbete){
     Verbete* novo = new Verbete;
     novo->palavra = verbete.palavra;
     novo->significados = verbete.significados;
@@ -18,6 +18,24 @@ void ListaEncadeada::insereFinal(Verbete verbete){
         primeiro = novo;
         ultimo = novo;
     }else{
+        Verbete* aux = primeiro;
+        Verbete* anterior = NULL;
+
+        while(aux != NULL){
+            if(aux->palavra > verbete.palavra){
+                if(aux == primeiro){
+                    primeiro = novo;
+                    novo->proximo = aux;
+                    return;
+                }else{
+                    anterior->proximo = novo;
+                    novo->proximo = aux;
+                    return;
+                }
+            }
+            anterior = aux;
+            aux = aux->proximo;
+        }
         ultimo->proximo = novo;
         ultimo = novo;
     }
@@ -59,11 +77,28 @@ Verbete ListaEncadeada::pesquisaItem(Verbete verbete){
     }
 }
 
+bool ListaEncadeada::existeItem(Verbete verbete){
+    Verbete* aux = primeiro;
+
+    //std::string conteudo = verbete.significados->conteudo;
+
+    while(aux != NULL){
+        if(aux->palavra == verbete.palavra){
+            //adicionar significado
+            aux->significados.adicionarSignificado(verbete.significados.conteudo[0]);
+            return true;
+        }
+        aux = aux->proximo;
+    }
+    return false;
+}
+
 void ListaEncadeada::printLista(){
     Verbete* aux = primeiro;
 
     while(aux != NULL){
         std::cout << aux->palavra << std::endl;
+        aux->significados.printSignificados();
         aux = aux->proximo;
     }
 }

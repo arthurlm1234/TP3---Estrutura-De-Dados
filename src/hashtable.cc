@@ -7,11 +7,11 @@ HashTable::HashTable(){
 }
 
 int HashTable::funcaoHash(Verbete verbete){
-    int hash = 0;
-    for(int i = 0; i < verbete.palavra.length(); i++){
-        hash += verbete.palavra[i];
+    if(verbete.palavra[0] >= 'A' && verbete.palavra[0] <= 'Z'){
+        return verbete.palavra[0] - 'A';
+    }else{
+        return verbete.palavra[0] - 'a' + 26;
     }
-    return hash % M;
 }
 
 Verbete HashTable::buscarVerbete(Verbete verbete){
@@ -21,7 +21,13 @@ Verbete HashTable::buscarVerbete(Verbete verbete){
 
 void HashTable::inserirVerbete(Verbete verbete){
     int hash = funcaoHash(verbete);
-    tabela[hash].insereFinal(verbete);
+    bool existe = tabela[hash].existeItem(verbete);
+
+    if(existe){
+        return;
+    }
+    
+    tabela[hash].insereOrdemAlfabetica(verbete);
 }
 
 void HashTable::deletarVerbete(Verbete verbete){

@@ -22,7 +22,13 @@ int main(int argc, char* argv[]) {
     hashTable->inserirVerbete(Verbete("mouse", ""));
     hashTable->inserirVerbete(Verbete("cachorro", ""));
     hashTable->inserirVerbete(Verbete("morango", "bbb"));
-
+    hashTable->inserirVerbete(Verbete("ameixa", "bbb"));
+    hashTable->inserirVerbete(Verbete("Cha", "bbb"));
+    hashTable->inserirVerbete(Verbete("banana", "bbb"));
+    hashTable->inserirVerbete(Verbete("abacaxi", "bbb"));
+    hashTable->inserirVerbete(Verbete("abacate", "bbb"));
+    hashTable->inserirVerbete(Verbete("cha", "bbb"));
+    hashTable->inserirVerbete(Verbete("Cha", "bbbuceta"));
     hashTable->printTabela();
 
     return 0;

@@ -9,8 +9,11 @@ class ListaEncadeada{
         Verbete* ultimo;
         ListaEncadeada();
         void insereFinal(Verbete verbete);
+        void insereOrdemAlfabetica(Verbete verbete);
         Verbete removeItem(Verbete verbete);
         Verbete pesquisaItem(Verbete verbete);
+        void ordenaTabela();
+        bool existeItem(Verbete verbete);
         void printLista();
 };
 
