@@ -1,4 +1,5 @@
 #include "verbete.hpp"
+#include "hashtable.hpp"
 
 class Dicionario{
     public:
@@ -9,4 +10,11 @@ class Dicionario{
         void deletarPalavrasComSignificadoAVL(Verbete* v, int nivel);
         void printArvoreAVL(Verbete* v, int nivel);
         void destruirArvoreAVL(Verbete* v);
+
+        HashTable* hashtable;
+        void inserirVerbeteHT(std::string palavra, std::string significado);
+        void deletarVerbeteHT(std::string palavra);
+        void imprimirPalavrasSemSignificadoHT();
+        void printHT();
+        void destruirHT();
 };

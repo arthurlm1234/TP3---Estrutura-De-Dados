@@ -3,6 +3,7 @@
 
 Dicionario::Dicionario(){
     raiz = NULL;
+    hashtable = new HashTable();
 }
 
 void Dicionario::inserirVerbeteAVL(std::string palavra, std::string significado){
@@ -23,4 +24,28 @@ void Dicionario::deletarPalavrasComSignificadoAVL(Verbete* v, int nivel){
 
 void Dicionario::printArvoreAVL(Verbete* v, int nivel){
     printArvore(v, nivel);
+}
+
+void Dicionario::destruirArvoreAVL(Verbete* v){
+    destruirArvore(v);
+}
+
+void Dicionario::inserirVerbeteHT(std::string palavra, std::string significado){
+    hashtable->inserirVerbete(Verbete(palavra, significado));
+}
+
+void Dicionario::deletarVerbeteHT(std::string palavra){
+    hashtable->deletarVerbete(palavra);
+}
+
+void Dicionario::imprimirPalavrasSemSignificadoHT(){
+    hashtable->imprimirVerbetesSemSignificado();
+}
+
+void Dicionario::printHT(){
+    hashtable->printTabela();
+}
+
+void Dicionario::destruirHT(){
+    hashtable->destruirTabela();
 }

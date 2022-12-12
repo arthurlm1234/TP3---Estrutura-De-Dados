@@ -5,6 +5,17 @@ ListaEncadeada::ListaEncadeada(){
     ultimo = NULL;
 }
 
+ListaEncadeada::~ListaEncadeada(){
+    Verbete* aux = primeiro;
+    Verbete* proximo = NULL;
+
+    while(aux != NULL){
+        proximo = aux->proximo;
+        delete aux;
+        aux = proximo;
+    }
+}
+
 void ListaEncadeada::insereOrdemAlfabetica(Verbete verbete){
     Verbete* novo = new Verbete;
     novo->palavra = verbete.palavra;
@@ -64,6 +75,8 @@ Verbete ListaEncadeada::removeItem(Verbete verbete){
         anterior = aux;
         aux = aux->proximo;
     }
+
+    return *aux;
 }
 
 Verbete ListaEncadeada::pesquisaItem(Verbete verbete){
@@ -75,6 +88,8 @@ Verbete ListaEncadeada::pesquisaItem(Verbete verbete){
         }
         aux = aux->proximo;
     }
+
+    return *aux;
 }
 
 bool ListaEncadeada::existeItem(Verbete verbete){
@@ -91,6 +106,32 @@ bool ListaEncadeada::existeItem(Verbete verbete){
         aux = aux->proximo;
     }
     return false;
+}
+
+void ListaEncadeada::removeComSignificado(){
+    Verbete* aux = primeiro;
+    Verbete* anterior = NULL;
+
+    while(aux != NULL){
+        if(aux->significados.conteudo[0].size() != 0){
+            if(aux == primeiro){
+                primeiro = primeiro->proximo;
+                aux->proximo = NULL;
+                aux = primeiro;
+            }else if(aux == ultimo){
+                ultimo = anterior;
+                anterior->proximo = NULL;
+                aux = NULL;
+            }else{
+                anterior->proximo = aux->proximo;
+                aux->proximo = NULL;
+                aux = anterior->proximo;
+            }
+        }else{
+            anterior = aux;
+            aux = aux->proximo;
+        }
+    }
 }
 
 void ListaEncadeada::printLista(){

@@ -1,5 +1,4 @@
 #include "dicionario.hpp"
-#include "hashtable.hpp"
 
 int main(int argc, char* argv[]) {
 
@@ -15,7 +14,7 @@ int main(int argc, char* argv[]) {
     std::cout << std::endl;
     dicionario->printArvoreAVL(dicionario->raiz, 0);*/
 
-    HashTable *hashTable = new HashTable();
+   /* HashTable *hashTable = new HashTable();
 
     hashTable->inserirVerbete(Verbete("pera", "aaaa"));
     hashTable->inserirVerbete(Verbete("morango", "aaaa"));
@@ -29,7 +28,24 @@ int main(int argc, char* argv[]) {
     hashTable->inserirVerbete(Verbete("abacate", "bbb"));
     hashTable->inserirVerbete(Verbete("cha", "bbb"));
     hashTable->inserirVerbete(Verbete("Cha", "bbbuceta"));
-    hashTable->printTabela();
+    hashTable->inserirVerbete(Verbete("Mar", ""));
+    
+    hashTable->imprimirVerbetesSemSignificado();*/
+
+    Dicionario* dicionario = new Dicionario();
+
+    dicionario->inserirVerbeteHT("pera", "aaaa");
+    dicionario->inserirVerbeteHT("morango", "aaaa");
+    dicionario->inserirVerbeteHT("mouse", "");
+    dicionario->inserirVerbeteHT("cachorro", "");
+    dicionario->inserirVerbeteHT("morango", "bbb");
+    dicionario->inserirVerbeteHT("ameixa", "bbb");
+    dicionario->inserirVerbeteHT("Cha", "bbb");
+    dicionario->inserirVerbeteHT("banana", "bbb");
+    dicionario->inserirVerbeteHT("abacaxi", "bbb");
+
+    dicionario->printHT();
+    dicionario->imprimirPalavrasSemSignificadoHT();
 
     return 0;
 
