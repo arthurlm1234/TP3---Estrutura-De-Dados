@@ -60,7 +60,6 @@ int calcularFatorBalanco(Verbete *n){
 
 Verbete *inserirVerbete(Verbete *verbete, std::string _palavra, std::string _signficados){
     if(verbete == NULL){
-        LEMEMLOG((long int)(&verbete), sizeof(verbete),0);
         return (novoVerbete(_palavra, _signficados));
     }
 
@@ -106,9 +105,10 @@ Verbete *inserirVerbete(Verbete *verbete, std::string _palavra, std::string _sig
 //find word with significado and save in a array palavras
 void buscarPalavrasComSignificado(Verbete *raiz, int nivel){
     if(raiz == NULL){
-        LEMEMLOG((long int)(&raiz), sizeof(raiz),0);
         return;
     }
+
+    LEMEMLOG((long int)(&raiz), sizeof(raiz),0);
 
     buscarPalavrasComSignificado(raiz->filhoEsquerdo, nivel);
     if(raiz->significados.possuiSignificado()){
@@ -130,9 +130,10 @@ Verbete *ultimaPalavra(Verbete *verbete){
 
 Verbete *deletarVerbete(Verbete *raiz, std::string _palavra){
     if(raiz == NULL){
-        LEMEMLOG((long int)(&raiz), sizeof(raiz),0);
         return raiz;
     }
+
+    LEMEMLOG((long int)(&raiz), sizeof(raiz),0);
         
     if(_palavra < raiz->palavra)
         raiz->filhoEsquerdo = deletarVerbete(raiz->filhoEsquerdo, _palavra);

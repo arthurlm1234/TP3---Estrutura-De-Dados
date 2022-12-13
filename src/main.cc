@@ -8,9 +8,11 @@ int main(int argc, char* argv[]) {
     char log [10] = "log.out";
     bool mem = false;
 
+    std::cout << sizeof(Verbete) << std::endl;
+
     int opt;
 
-    while ((opt = getopt(argc, argv, "i:o:t:p:")) != -1) {
+    while ((opt = getopt(argc, argv, "i:o:t:p")) != -1) {
         switch (opt) {
             case 'i':
                 input = optarg;
@@ -100,7 +102,7 @@ int main(int argc, char* argv[]) {
         dicionario->destruirHT();
     }
 
-    if(mem == true){
+    if(mem){
         desativaMemLog();
         finalizaMemLog();
     }
