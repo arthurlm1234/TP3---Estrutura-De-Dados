@@ -1,7 +1,7 @@
 #include "verbete.hpp"
 
 int cont = 0;
-std::string palavras[100];
+std::string palavras[10000];
 
 void adicionarPalavra(std::string palavra){
     palavras[cont] = palavra;
@@ -102,16 +102,18 @@ Verbete *inserirVerbete(Verbete *verbete, std::string _palavra, std::string _sig
     return verbete;
 }
 
-//find word with significado and save in a array
+//find word with significado and save in a array palavras
 void buscarPalavrasComSignificado(Verbete *raiz, int nivel){
     if(raiz == NULL){
         return;
     }
-    //std::string *palavras = new std::string[10];
+
+    //std::cout << "ccccccccccccccccc" << std::endl;
     buscarPalavrasComSignificado(raiz->filhoEsquerdo, nivel);
-    if(!raiz->significados.conteudo->empty()){
+    if(raiz->significados.possuiSignificado()){
         adicionarPalavra(raiz->palavra);
         //std::cout << raiz->palavra << std::endl;
+        //std::cout << "buceta" << std::endl;
     }
     buscarPalavrasComSignificado(raiz->filhoDireito, nivel);
 }
@@ -176,9 +178,17 @@ Verbete *deletarVerbete(Verbete *raiz, std::string _palavra){
 void printArvore(Verbete *raiz, int nivel){
     if(raiz != NULL){
         printArvore(raiz->filhoEsquerdo, nivel + 1);
-        std::cout << raiz->palavra << " " << std::endl;
+        std::cout << raiz->palavra << std::endl;
         raiz->significados.printSignificados();
         printArvore(raiz->filhoDireito, nivel + 1);
+    }
+}
+
+void printArvoreFinal(Verbete *raiz, int nivel){
+    if(raiz != NULL){
+        printArvoreFinal(raiz->filhoEsquerdo, nivel + 1);
+        std::cout << raiz->palavra << std::endl;
+        printArvoreFinal(raiz->filhoDireito, nivel + 1);
     }
 }
 

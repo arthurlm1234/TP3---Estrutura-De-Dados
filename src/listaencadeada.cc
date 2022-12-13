@@ -92,17 +92,12 @@ Verbete ListaEncadeada::pesquisaItem(Verbete verbete){
 bool ListaEncadeada::existeItem(Verbete verbete){
     Verbete* aux = primeiro;
 
-    //std::string conteudo = verbete.significados->conteudo;
 
     while(aux != NULL){
         if(aux->palavra == verbete.palavra){
-
-            //std::cout << "Palavra: " << aux->palavra << std::endl;
-
             if(verbete.significados.conteudo[0].size() == 0)
                 return true;
             
-            //std::cout << "Estou aqui" << std::endl;
             aux->significados.adicionarSignificado(verbete.significados.conteudo[0]);
             return true;
         }
@@ -112,7 +107,7 @@ bool ListaEncadeada::existeItem(Verbete verbete){
 }
 
 void ListaEncadeada::removeComSignificado(){
-    //remove todos os verbetes que possuem significado
+
     Verbete* aux = primeiro;
     Verbete* anterior = NULL;
 

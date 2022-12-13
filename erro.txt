@@ -1,2 +1,6 @@
 n [user]
 n [user] drug user, substance abuser
+n [vector]
+n [vegetable] veggie, greens
+n [vegetarian] person who eats no meat
+n [vegetation] flora, botany

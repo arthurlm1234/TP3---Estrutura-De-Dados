@@ -6,9 +6,7 @@ Significados::Significados(){
 }
 
 void Significados::adicionarSignificado(std::string significado){
-   //std::cout << "Adicionando significado: " << significado << std::endl;
     conteudo[numeroSignificados] = significado;
-    //std::cout << "Significado adicionado: " << conteudo[numeroSignificados] << std::endl;
     numeroSignificados++;
 }
 

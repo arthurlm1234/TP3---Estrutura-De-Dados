@@ -3,34 +3,6 @@
 
 int main(int argc, char* argv[]) {
 
-    /*Dicionario* dicionario = new Dicionario();
-    dicionario->inserirVerbeteAVL("pera", "aaaa");
-    dicionario->inserirVerbeteAVL("morango", "aaaa");
-    dicionario->inserirVerbeteAVL("mouse", "");
-    dicionario->inserirVerbeteAVL("cachorro", "");
-    dicionario->inserirVerbeteAVL("morango", "bbb");
-
-    dicionario->printArvoreAVL(dicionario->raiz, 0);
-    dicionario->deletarPalavrasComSignificadoAVL(dicionario->raiz, 0);
-    std::cout << std::endl;
-    dicionario->printArvoreAVL(dicionario->raiz, 0);*/
-
-    /*Dicionario* dicionario = new Dicionario("a");
-
-    dicionario->inserirVerbeteHT("pera", "aaaa");
-    dicionario->inserirVerbeteHT("morango", "aaaa");
-    dicionario->inserirVerbeteHT("mouse", "");
-    dicionario->inserirVerbeteHT("cachorro", "");
-    dicionario->inserirVerbeteHT("morango", "bbb");
-    dicionario->inserirVerbeteHT("ameixa", "bbb");
-    dicionario->inserirVerbeteHT("Cha", "bbb");
-    dicionario->inserirVerbeteHT("banana", "bbb");
-    dicionario->inserirVerbeteHT("abacaxi", "bbb");
-
-    dicionario->printHT();
-    std::cout << std::endl;
-    dicionario->imprimirPalavrasSemSignificadoHT();*/
-
     std::string input, output, tipo;
 
     int opt;
@@ -61,7 +33,6 @@ int main(int argc, char* argv[]) {
     while(!entrada.eof()){
         entrada >> classe;
         
-        //getline até ]
         std::getline(entrada, palavra, ']');
 
 
@@ -73,12 +44,8 @@ int main(int argc, char* argv[]) {
             }
         }
 
-
-        //std::cout << palavra << std::endl;
-
         palavra = palavra + " (" + classe + ")";
 
-        //salvar até o fim da linha em significados
         std::getline(entrada, significado);
 
         //eliminar espaço no começo de significado
@@ -89,30 +56,34 @@ int main(int argc, char* argv[]) {
             }
         }
 
-        if(tipo == "avl"){
+        //if(palavra != "()"){
+            if(tipo == "arv"){
             dicionario->inserirVerbeteAVL(palavra, significado);
         }else if(tipo == "hash"){
-            //std::cout << "insere: " << palavra << " " << significado << std::endl;
             dicionario->inserirVerbeteHT(palavra, significado);
         }
+        //}
 
         palavra = "";
         significado = "";
         classe = "";
         aux = "";
-    
-
     }
-
-    //std::cout << "terminou de ler" << std::endl << std::endl;
-
-    if(tipo == "avl"){
+    
+    if(tipo == "arv"){
         dicionario->printArvoreAVL(dicionario->raiz, 0);
         dicionario->deletarPalavrasComSignificadoAVL(dicionario->raiz, 0);
-        dicionario->printArvoreAVL(dicionario->raiz, 0);
+        dicionario->printArvoreAVLFinal(dicionario->raiz, 0);
     }else if(tipo == "hash"){
         dicionario->printHT();
         dicionario->imprimirPalavrasSemSignificadoHT();
     }
+
+    /* if(tipo == "avl"){
+        dicionario->destruirArvoreAVL(dicionario->raiz);
+    }else if(tipo == "hash"){
+        dicionario->destruirHT();
+    }*/
+
 return 0;
 }

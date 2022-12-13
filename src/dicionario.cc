@@ -27,6 +27,10 @@ void Dicionario::printArvoreAVL(Verbete* v, int nivel){
     printArvore(v, nivel);
 }
 
+void Dicionario::printArvoreAVLFinal(Verbete* v, int nivel){
+    printArvoreFinal(v, nivel);
+}
+
 void Dicionario::destruirArvoreAVL(Verbete* v){
     destruirArvore(v);
 }

@@ -10,6 +10,7 @@ class Dicionario{
         void deletarVerbeteAVL(std::string palavra);
         void deletarPalavrasComSignificadoAVL(Verbete* v, int nivel);
         void printArvoreAVL(Verbete* v, int nivel);
+        void printArvoreAVLFinal(Verbete* v, int nivel);
         void destruirArvoreAVL(Verbete* v);
 
         HashTable* hashtable;
