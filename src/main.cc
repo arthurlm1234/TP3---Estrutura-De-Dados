@@ -83,11 +83,11 @@ int main(int argc, char* argv[]) {
         dicionario->imprimirPalavrasSemSignificadoHT();
     }
 
-    /* if(tipo == "avl"){
+    if(tipo == "avl"){
         dicionario->destruirArvoreAVL(dicionario->raiz);
     }else if(tipo == "hash"){
         dicionario->destruirHT();
-    }*/
+    }
 
 return 0;
 }
