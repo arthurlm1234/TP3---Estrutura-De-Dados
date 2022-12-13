@@ -108,12 +108,9 @@ void buscarPalavrasComSignificado(Verbete *raiz, int nivel){
         return;
     }
 
-    //std::cout << "ccccccccccccccccc" << std::endl;
     buscarPalavrasComSignificado(raiz->filhoEsquerdo, nivel);
     if(raiz->significados.possuiSignificado()){
         adicionarPalavra(raiz->palavra);
-        //std::cout << raiz->palavra << std::endl;
-        //std::cout << "buceta" << std::endl;
     }
     buscarPalavrasComSignificado(raiz->filhoDireito, nivel);
 }
@@ -174,7 +171,6 @@ Verbete *deletarVerbete(Verbete *raiz, std::string _palavra){
     return raiz;
 }
 
-//print palavras alfabeticamente
 void printArvore(Verbete *raiz, int nivel){
     if(raiz != NULL){
         printArvore(raiz->filhoEsquerdo, nivel + 1);
@@ -184,7 +180,7 @@ void printArvore(Verbete *raiz, int nivel){
     }
 }
 
-void printArvoreFinal(Verbete *raiz, int nivel){
+void printArvoreFinal (Verbete *raiz, int nivel){
     if(raiz != NULL){
         printArvoreFinal(raiz->filhoEsquerdo, nivel + 1);
         std::cout << raiz->palavra << std::endl;
