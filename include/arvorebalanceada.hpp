@@ -60,6 +60,7 @@ int calcularFatorBalanco(Verbete *n){
 
 Verbete *inserirVerbete(Verbete *verbete, std::string _palavra, std::string _signficados){
     if(verbete == NULL){
+        LEMEMLOG((long int)(&verbete), sizeof(verbete),0);
         return (novoVerbete(_palavra, _signficados));
     }
 
@@ -105,6 +106,7 @@ Verbete *inserirVerbete(Verbete *verbete, std::string _palavra, std::string _sig
 //find word with significado and save in a array palavras
 void buscarPalavrasComSignificado(Verbete *raiz, int nivel){
     if(raiz == NULL){
+        LEMEMLOG((long int)(&raiz), sizeof(raiz),0);
         return;
     }
 
@@ -119,6 +121,7 @@ void buscarPalavrasComSignificado(Verbete *raiz, int nivel){
 Verbete *ultimaPalavra(Verbete *verbete){
     Verbete *atual = verbete;
     while(atual->filhoEsquerdo != NULL){
+        LEMEMLOG((long int)(&atual), sizeof(atual),0);
         atual = atual->filhoEsquerdo;
     }
 
@@ -126,8 +129,11 @@ Verbete *ultimaPalavra(Verbete *verbete){
 }
 
 Verbete *deletarVerbete(Verbete *raiz, std::string _palavra){
-    if(raiz == NULL)
+    if(raiz == NULL){
+        LEMEMLOG((long int)(&raiz), sizeof(raiz),0);
         return raiz;
+    }
+        
     if(_palavra < raiz->palavra)
         raiz->filhoEsquerdo = deletarVerbete(raiz->filhoEsquerdo, _palavra);
     else if(_palavra > raiz->palavra)
@@ -173,6 +179,7 @@ Verbete *deletarVerbete(Verbete *raiz, std::string _palavra){
 
 void printArvore(Verbete *raiz, int nivel){
     if(raiz != NULL){
+        LEMEMLOG((long int)(&raiz), sizeof(raiz),0);
         printArvore(raiz->filhoEsquerdo, nivel + 1);
         std::cout << raiz->palavra << std::endl;
         raiz->significados.printSignificados();
@@ -182,6 +189,7 @@ void printArvore(Verbete *raiz, int nivel){
 
 void printArvoreFinal (Verbete *raiz, int nivel){
     if(raiz != NULL){
+        LEMEMLOG((long int)(&raiz), sizeof(raiz),0);
         printArvoreFinal(raiz->filhoEsquerdo, nivel + 1);
         std::cout << raiz->palavra << std::endl;
         printArvoreFinal(raiz->filhoDireito, nivel + 1);
@@ -190,6 +198,7 @@ void printArvoreFinal (Verbete *raiz, int nivel){
 
 void destruirArvore(Verbete *raiz){
     if(raiz != NULL){
+        LEMEMLOG((long int)(&raiz), sizeof(raiz),0);
         destruirArvore(raiz->filhoEsquerdo);
         destruirArvore(raiz->filhoDireito);
         delete raiz;

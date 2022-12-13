@@ -1,4 +1,5 @@
 #include "significados.hpp"
+#include "memlog.hpp"
 #include <fstream>
 
 #ifndef VERBETE_HPP

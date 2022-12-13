@@ -30,6 +30,7 @@ void ListaEncadeada::insereOrdemAlfabetica(Verbete verbete){
         Verbete* anterior = NULL;
 
         while(aux != NULL){
+            LEMEMLOG((long int)(&aux), sizeof(aux),0);
             if(aux->palavra > verbete.palavra){
                 if(aux == primeiro){
                     primeiro = novo;
@@ -54,6 +55,7 @@ Verbete ListaEncadeada::removeItem(Verbete verbete){
     Verbete* anterior = NULL;
 
     while(aux != NULL){
+        LEMEMLOG((long int)(&aux), sizeof(aux),0);
         if(aux->palavra == verbete.palavra){
             if(aux == primeiro){
                 primeiro = primeiro->proximo;
@@ -80,6 +82,7 @@ Verbete ListaEncadeada::pesquisaItem(Verbete verbete){
     Verbete* aux = primeiro;
 
     while(aux != NULL){
+        LEMEMLOG((long int)(&aux), sizeof(aux),0);
         if(aux->palavra == verbete.palavra){
             return *aux;
         }
@@ -94,6 +97,7 @@ bool ListaEncadeada::existeItem(Verbete verbete){
 
 
     while(aux != NULL){
+        LEMEMLOG((long int)(&aux), sizeof(aux),0);
         if(aux->palavra == verbete.palavra){
             if(verbete.significados.conteudo[0].size() == 0)
                 return true;
@@ -113,6 +117,7 @@ void ListaEncadeada::removeComSignificado(){
 
 
     while(aux != NULL){
+        LEMEMLOG((long int)(&aux), sizeof(aux),0);
         if(aux->significados.possuiSignificado()){
             if(aux == primeiro){
                 primeiro = primeiro->proximo;
@@ -138,6 +143,7 @@ void ListaEncadeada::printLista(){
     Verbete* aux = primeiro;
 
     while(aux != NULL){
+        LEMEMLOG((long int)(&aux), sizeof(aux),0);
         std::cout << aux->palavra << std::endl;
         aux->significados.printSignificados();
         aux = aux->proximo;
