@@ -1,4 +1,5 @@
 #include "dicionario.hpp"
+#include "msgassert.hpp"
 #include <getopt.h>
 
 int main(int argc, char* argv[]) {
@@ -19,12 +20,15 @@ int main(int argc, char* argv[]) {
                 tipo = optarg;
                 break;
             default:
-                std::cout << "Opção inválida" << std::endl;
+                erroAssert(true, "Argumentos inválidos");
                 break;
         }
     }
 
+    erroAssert(tipo  == "arv" || tipo == "hash", "Tipo inválido");
+
     std::ifstream entrada(input);
+    erroAssert(entrada.is_open(), "Arquivo de entrada não encontrado");
 
     Dicionario* dicionario = new Dicionario(output);
 
