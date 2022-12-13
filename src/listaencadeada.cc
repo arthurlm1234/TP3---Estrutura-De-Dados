@@ -99,7 +99,10 @@ bool ListaEncadeada::existeItem(Verbete verbete){
 
     while(aux != NULL){
         if(aux->palavra == verbete.palavra){
-            //adicionar significado
+
+            if(verbete.significados.conteudo[0].size() == 0)
+                return true;
+            
             aux->significados.adicionarSignificado(verbete.significados.conteudo[0]);
             return true;
         }
@@ -109,11 +112,13 @@ bool ListaEncadeada::existeItem(Verbete verbete){
 }
 
 void ListaEncadeada::removeComSignificado(){
+    //remove todos os verbetes que possuem significado
     Verbete* aux = primeiro;
     Verbete* anterior = NULL;
 
+
     while(aux != NULL){
-        if(aux->significados.conteudo[0].size() != 0){
+        if(aux->significados.possuiSignificado()){
             if(aux == primeiro){
                 primeiro = primeiro->proximo;
                 aux->proximo = NULL;

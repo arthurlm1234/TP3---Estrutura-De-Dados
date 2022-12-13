@@ -9,6 +9,7 @@ class Significados{
         std::string* conteudo;
         int numeroSignificados;
         void adicionarSignificado(std::string significado);
+        bool possuiSignificado();
         void printSignificados();
 
     friend class Verbete;

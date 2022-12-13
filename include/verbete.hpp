@@ -1,4 +1,5 @@
 #include "significados.hpp"
+#include <fstream>
 
 #ifndef VERBETE_HPP
 #define VERBETE_HPP
@@ -13,6 +14,9 @@ class Verbete{
         Verbete* filhoEsquerdo;
         Verbete* filhoDireito;
         Verbete* proximo;
+        /*bool possuiSignificados(){
+            return significados.possuiSignificado;
+        }*/
 
         Verbete(std::string _palavra = "", std::string _significado = "")
         {

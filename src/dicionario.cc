@@ -1,9 +1,10 @@
 #include "dicionario.hpp"
 #include "arvorebalanceada.hpp"
 
-Dicionario::Dicionario(){
+Dicionario::Dicionario(std::string _output){
     raiz = NULL;
     hashtable = new HashTable();
+    output = _output;
 }
 
 void Dicionario::inserirVerbeteAVL(std::string palavra, std::string significado){

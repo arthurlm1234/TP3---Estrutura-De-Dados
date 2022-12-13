@@ -4,7 +4,8 @@
 class Dicionario{
     public:
         Verbete* raiz;
-        Dicionario();
+        Dicionario(std::string _output);
+        std::string output;
         void inserirVerbeteAVL(std::string palavra, std::string significado);
         void deletarVerbeteAVL(std::string palavra);
         void deletarPalavrasComSignificadoAVL(Verbete* v, int nivel);
