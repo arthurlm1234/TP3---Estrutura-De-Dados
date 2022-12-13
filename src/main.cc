@@ -5,6 +5,7 @@
 int main(int argc, char* argv[]) {
 
     std::string input, output, tipo;
+    char log [10] = "log.out";
     bool mem = false;
 
     int opt;
@@ -21,7 +22,7 @@ int main(int argc, char* argv[]) {
                 tipo = optarg;
                 break;
             case 'p':
-                iniciaMemLog(optarg);
+                iniciaMemLog(log);
                 ativaMemLog();
                 mem = true;
                 break;
