@@ -20,9 +20,6 @@ void ListaEncadeada::insereOrdemAlfabetica(Verbete verbete){
     Verbete* novo = new Verbete;
     novo->palavra = verbete.palavra;
     novo->significados = verbete.significados;
-    novo->altura = verbete.altura;
-    novo->filhoEsquerdo = verbete.filhoEsquerdo;
-    novo->filhoDireito = verbete.filhoDireito;
     novo->proximo = NULL;
 
     if(primeiro == NULL){
@@ -100,9 +97,12 @@ bool ListaEncadeada::existeItem(Verbete verbete){
     while(aux != NULL){
         if(aux->palavra == verbete.palavra){
 
+            //std::cout << "Palavra: " << aux->palavra << std::endl;
+
             if(verbete.significados.conteudo[0].size() == 0)
                 return true;
             
+            //std::cout << "Estou aqui" << std::endl;
             aux->significados.adicionarSignificado(verbete.significados.conteudo[0]);
             return true;
         }

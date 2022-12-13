@@ -6,22 +6,26 @@ Significados::Significados(){
 }
 
 void Significados::adicionarSignificado(std::string significado){
-    //std::cout << "adicionando significado" << std::endl;
+   //std::cout << "Adicionando significado: " << significado << std::endl;
     conteudo[numeroSignificados] = significado;
+    //std::cout << "Significado adicionado: " << conteudo[numeroSignificados] << std::endl;
     numeroSignificados++;
 }
 
 bool Significados::possuiSignificado(){
     for(int i = 0; i < numeroSignificados; i++){
-        if(!conteudo->empty())
+        if(conteudo[i] != "")
             return true;
     }
     return false;
 }
 
 void Significados::printSignificados(){
+    int cont  = 1;
     for(int i = 0; i < numeroSignificados; i++){
-        if(!conteudo->empty())
-            std::cout << i + 1 << ". " << conteudo[i] << std::endl;
+        if(conteudo[i] != ""){
+            std::cout << cont << ". " << conteudo[i] << std::endl;
+            cont++;
+        }
     }
 }

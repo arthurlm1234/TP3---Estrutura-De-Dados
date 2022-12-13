@@ -56,7 +56,7 @@ int main(int argc, char* argv[]) {
 
     Dicionario* dicionario = new Dicionario(output);
 
-    std::string palavra, classe, significado, aux, espaco;
+    std::string palavra, classe, significado, aux;
 
     while(!entrada.eof()){
         entrada >> classe;
@@ -92,6 +92,7 @@ int main(int argc, char* argv[]) {
         if(tipo == "avl"){
             dicionario->inserirVerbeteAVL(palavra, significado);
         }else if(tipo == "hash"){
+            //std::cout << "insere: " << palavra << " " << significado << std::endl;
             dicionario->inserirVerbeteHT(palavra, significado);
         }
 
@@ -99,7 +100,11 @@ int main(int argc, char* argv[]) {
         significado = "";
         classe = "";
         aux = "";
+    
+
     }
+
+    //std::cout << "terminou de ler" << std::endl << std::endl;
 
     if(tipo == "avl"){
         dicionario->printArvoreAVL(dicionario->raiz, 0);
@@ -109,7 +114,5 @@ int main(int argc, char* argv[]) {
         dicionario->printHT();
         dicionario->imprimirPalavrasSemSignificadoHT();
     }
-
-    return 0;
-
+return 0;
 }
