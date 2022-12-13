@@ -5,10 +5,11 @@
 int main(int argc, char* argv[]) {
 
     std::string input, output, tipo;
+    bool mem = false;
 
     int opt;
 
-    while ((opt = getopt(argc, argv, "i:o:t:")) != -1) {
+    while ((opt = getopt(argc, argv, "i:o:t:p:")) != -1) {
         switch (opt) {
             case 'i':
                 input = optarg;
@@ -18,6 +19,11 @@ int main(int argc, char* argv[]) {
                 break;
             case 't':
                 tipo = optarg;
+                break;
+            case 'p':
+                iniciaMemLog(optarg);
+                ativaMemLog();
+                mem = true;
                 break;
             default:
                 erroAssert(true, "Argumentos inválidos");
@@ -91,6 +97,11 @@ int main(int argc, char* argv[]) {
         dicionario->destruirArvoreAVL(dicionario->raiz);
     }else if(tipo == "hash"){
         dicionario->destruirHT();
+    }
+
+    if(mem == true){
+        desativaMemLog();
+        finalizaMemLog();
     }
 
 return 0;
