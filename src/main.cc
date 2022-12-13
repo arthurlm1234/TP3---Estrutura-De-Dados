@@ -32,6 +32,10 @@ int main(int argc, char* argv[]) {
 
     while(!entrada.eof()){
         entrada >> classe;
+
+        if(classe == " "){
+            break;
+        }
         
         std::getline(entrada, palavra, ']');
 
@@ -56,13 +60,13 @@ int main(int argc, char* argv[]) {
             }
         }
 
-        //if(palavra != "()"){
+        if(palavra != " ()"){
             if(tipo == "arv"){
             dicionario->inserirVerbeteAVL(palavra, significado);
         }else if(tipo == "hash"){
             dicionario->inserirVerbeteHT(palavra, significado);
         }
-        //}
+        }
 
         palavra = "";
         significado = "";

@@ -184,6 +184,7 @@ void printArvore(Verbete *raiz, int nivel){
     }
 }
 
+//orint binary tree
 void printArvoreFinal(Verbete *raiz, int nivel){
     if(raiz != NULL){
         printArvoreFinal(raiz->filhoEsquerdo, nivel + 1);
