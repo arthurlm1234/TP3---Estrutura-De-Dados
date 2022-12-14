@@ -1,6 +1,7 @@
 #include "hashtable.hpp"
 
-HashTable::HashTable(){
+HashTable::HashTable(std::string _saida){
+    saida = _saida;
     for(int i = 0; i < M; i++){
         tabela[i] = ListaEncadeada();
     }

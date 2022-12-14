@@ -2,6 +2,7 @@
 
 int cont = 0;
 std::string palavras[10000];
+std::ofstream arquivo("output.txt");
 
 void adicionarPalavra(std::string palavra){
     palavras[cont] = palavra;
@@ -169,8 +170,8 @@ void printArvore(Verbete *raiz, int nivel){
     if(raiz != NULL){
         LEMEMLOG((long int)(&raiz), sizeof(raiz),0);
         printArvore(raiz->filhoEsquerdo, nivel + 1);
-        std::cout << raiz->palavra << std::endl;
-        raiz->significados.printSignificados();
+        arquivo << raiz->palavra << std::endl;
+        arquivo << raiz->significados.printSignificados().str();
         printArvore(raiz->filhoDireito, nivel + 1);
     }
 }
@@ -179,7 +180,7 @@ void printArvoreFinal (Verbete *raiz, int nivel){
     if(raiz != NULL){
         LEMEMLOG((long int)(&raiz), sizeof(raiz),0);
         printArvoreFinal(raiz->filhoEsquerdo, nivel + 1);
-        std::cout << raiz->palavra << std::endl;
+        arquivo << raiz->palavra << std::endl;
         printArvoreFinal(raiz->filhoDireito, nivel + 1);
     }
 }

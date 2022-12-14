@@ -1,4 +1,6 @@
 #include <iostream>
+#include <fstream>
+#include <sstream>
 
 #ifndef SIGNIFICADOS_HPP
 #define SIGNIFICADOS_HPP
@@ -10,7 +12,7 @@ class Significados{
         int numeroSignificados;
         void adicionarSignificado(std::string significado);
         bool possuiSignificado();
-        void printSignificados();
+        std::ostringstream printSignificados();
 
     friend class Verbete;
 };

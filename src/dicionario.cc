@@ -3,7 +3,7 @@
 
 Dicionario::Dicionario(std::string _output){
     raiz = NULL;
-    hashtable = new HashTable();
+    hashtable = new HashTable("output.txt");
     output = _output;
 }
 

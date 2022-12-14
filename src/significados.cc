@@ -18,12 +18,16 @@ bool Significados::possuiSignificado(){
     return false;
 }
 
-void Significados::printSignificados(){
+std::ostringstream Significados::printSignificados(){
     int cont  = 1;
+    std::ostringstream oss;
+
     for(int i = 0; i < numeroSignificados; i++){
         if(conteudo[i] != ""){
-            std::cout << cont << ". " << conteudo[i] << std::endl;
+            oss << cont << ". " << conteudo[i] << std::endl;
             cont++;
         }
     }
+
+    return oss;
 }
