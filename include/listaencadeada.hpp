@@ -12,7 +12,6 @@ class ListaEncadeada{
         void insereOrdemAlfabetica(Verbete verbete);
         Verbete removeItem(Verbete verbete);
         Verbete pesquisaItem(Verbete verbete);
-        void ordenaTabela();
         bool existeItem(Verbete verbete);
         void removeComSignificado();
         void printLista();

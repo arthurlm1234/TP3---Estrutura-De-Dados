@@ -43,8 +43,8 @@ void Dicionario::deletarVerbeteHT(std::string palavra){
     hashtable->deletarVerbete(palavra);
 }
 
-void Dicionario::imprimirPalavrasSemSignificadoHT(){
-    hashtable->imprimirVerbetesSemSignificado();
+void Dicionario::deletarPalavrasComSignificadoHT(){
+    hashtable->deletarVerbetesComSignificado();
 }
 
 void Dicionario::printHT(){

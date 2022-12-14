@@ -16,7 +16,7 @@ class Dicionario{
         HashTable* hashtable;
         void inserirVerbeteHT(std::string palavra, std::string significado);
         void deletarVerbeteHT(std::string palavra);
-        void imprimirPalavrasSemSignificadoHT();
+        void deletarPalavrasComSignificadoHT();
         void printHT();
         void destruirHT();
 };

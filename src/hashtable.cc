@@ -35,7 +35,7 @@ void HashTable::deletarVerbete(Verbete verbete){
     tabela[hash].removeItem(verbete);
 }
 
-void HashTable::imprimirVerbetesSemSignificado(){
+void HashTable::deletarVerbetesComSignificado(){
     for(int i = 0; i < M; i++){
         tabela[i].removeComSignificado();
     }

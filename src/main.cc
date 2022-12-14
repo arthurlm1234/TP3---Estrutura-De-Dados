@@ -88,7 +88,7 @@ int main(int argc, char* argv[]) {
         dicionario->printArvoreAVLFinal(dicionario->raiz, 0);
     }else if(tipo == "hash"){
         dicionario->printHT();
-        dicionario->imprimirPalavrasSemSignificadoHT();
+        dicionario->deletarPalavrasComSignificadoHT();
     }
 
     if(tipo == "arv"){

@@ -9,7 +9,7 @@ class HashTable{
         Verbete buscarVerbete(Verbete verbete);
         void inserirVerbete(Verbete verbete);
         void deletarVerbete(Verbete verbete);
-        void imprimirVerbetesSemSignificado();
+        void deletarVerbetesComSignificado();
         static const int M = 52;
         ListaEncadeada tabela[M];
         void printTabela();
