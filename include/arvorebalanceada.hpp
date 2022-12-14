@@ -161,19 +161,6 @@ Verbete *deletarVerbete(Verbete *raiz, std::string _palavra){
     if(raiz == NULL){
         return raiz;
     }
-
-    /*raiz->altura = 1 + max(altura(raiz->filhoEsquerdo),altura(raiz->filhoDireito));
-    int fatorBalanco = calcularFatorBalanco(raiz);
-
-    if(fatorBalanco < -1){
-        if(calcularFatorBalanco(raiz->filhoDireito) <= 0){
-            return rotacaoEsquerda(raiz);
-        }
-        else{
-            raiz->filhoDireito = rotacaoDireita(raiz->filhoDireito);
-            return rotacaoEsquerda(raiz);
-        }
-    }*/
     
     return raiz;
 }
