@@ -140,12 +140,15 @@ void ListaEncadeada::removeComSignificado(){
 }
 
 void ListaEncadeada::printLista(){
+    std::ofstream arquivo;
+    arquivo.open("output.txt", std::ios::out | std::ios::app);
+    
     Verbete* aux = primeiro;
 
     while(aux != NULL){
         LEMEMLOG((long int)(&aux), sizeof(aux),0);
-        std::cout << aux->palavra << std::endl;
-        aux->significados.printSignificados();
+        arquivo << aux->palavra << std::endl;
+        arquivo << aux->significados.printSignificados().str();
         aux = aux->proximo;
     }
 }

@@ -4,8 +4,7 @@
 //create a hashtable for creating a dictionary
 class HashTable{
     public:
-        HashTable(std::string saida);
-        std::string saida;
+        HashTable();
         int funcaoHash(Verbete verbete);
         Verbete buscarVerbete(Verbete verbete);
         void inserirVerbete(Verbete verbete);
