@@ -12,6 +12,7 @@ class Dicionario{
         void printArvoreAVL(Verbete* v, int nivel);
         void printArvoreAVLFinal(Verbete* v, int nivel);
         void destruirArvoreAVL(Verbete* v);
+        bool existePalavraSemSignificadoAVL(Verbete* v, int nivel);
 
         HashTable* hashtable;
         void inserirVerbeteHT(std::string palavra, std::string significado);

@@ -39,6 +39,10 @@ void Dicionario::inserirVerbeteHT(std::string palavra, std::string significado){
     hashtable->inserirVerbete(Verbete(palavra, significado));
 }
 
+bool Dicionario::existePalavraSemSignificadoAVL(Verbete* v, int nivel){
+    return existePalavraSemSignificado(v, nivel);
+}
+
 void Dicionario::deletarVerbeteHT(std::string palavra){
     hashtable->deletarVerbete(palavra);
 }

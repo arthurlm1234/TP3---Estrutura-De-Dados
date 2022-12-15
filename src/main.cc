@@ -84,8 +84,10 @@ int main(int argc, char* argv[]) {
     
     if(tipo == "arv"){
         dicionario->printArvoreAVL(dicionario->raiz, 0);
-        dicionario->deletarPalavrasComSignificadoAVL(dicionario->raiz, 0);
-        dicionario->printArvoreAVLFinal(dicionario->raiz, 0);
+        if(dicionario->existePalavraSemSignificadoAVL(dicionario->raiz, 0)){
+            dicionario->deletarPalavrasComSignificadoAVL(dicionario->raiz, 0);
+            dicionario->printArvoreAVLFinal(dicionario->raiz, 0);
+        }
     }else if(tipo == "hash"){
         dicionario->printHT();
         dicionario->deletarPalavrasComSignificadoHT();

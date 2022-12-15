@@ -166,6 +166,22 @@ Verbete *deletarVerbete(Verbete *raiz, std::string _palavra){
     return raiz;
 }
 
+//pecoore toda arvore e ve se possui alguma palvra sem significado
+bool existePalavraSemSignificado(Verbete *raiz, int nivel){
+    if(raiz == NULL){
+        return false;
+    }
+
+    LEMEMLOG((long int)(&raiz), sizeof(raiz),0);
+
+    if(!raiz->significados.possuiSignificado()){
+        return true;
+    }
+    else{
+        return existePalavraSemSignificado(raiz->filhoEsquerdo, nivel) || existePalavraSemSignificado(raiz->filhoDireito, nivel);
+    }
+}
+
 void printArvore(Verbete *raiz, int nivel){
     if(raiz != NULL){
         LEMEMLOG((long int)(&raiz), sizeof(raiz),0);
